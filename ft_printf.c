@@ -6,40 +6,11 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 03:38:33 by mkarakul          #+#    #+#             */
-/*   Updated: 2022/12/26 18:33:53 by mkarakul         ###   ########.fr       */
+/*   Updated: 2022/12/27 14:59:49 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	ft_putall(unsigned long nbr, char *base, int chk_p, int base_len)
-{
-	int	len;
-	int	i;
-
-	i = -1;
-	len = 0;
-	if (chk_p == 3)
-	{
-		if (!base)
-			return (write(1, "(null)", 6));
-		else
-			while (base[++i])
-				len += write(1, &base[i], 1);
-		return (len);
-	}
-	if (chk_p == 1)
-		len += write(1, "0x", 2);
-	if ((int)nbr < 0 && chk_p == 2)
-	{
-		len += write(1, "-", 1);
-		nbr = nbr * -1;
-	}
-	if (nbr / base_len != 0)
-		len += ft_putall(nbr / base_len, base, 0, base_len);
-	len += write(1, &base[nbr % base_len], 1);
-	return (len);
-}
 
 int	ft_control(char c, va_list a)
 {
@@ -50,14 +21,14 @@ int	ft_control(char c, va_list a)
 		chr = va_arg(a, int);
 		return (write(1, &chr, 1));
 	}
-	else if (c == 's')
-		return (ft_putall(0, va_arg(a, char *), 3, 0));
-	else if (c == 'p')
-		return (ft_putall(va_arg(a, unsigned long), "0123456789abcdef", 1, 16));
 	else if (c == 'd' || c == 'i')
 		return (ft_putall(va_arg(a, int), "0123456789", 2, 10));
 	else if (c == 'u')
 		return (ft_putall(va_arg(a, unsigned), "0123456789", 0, 10));
+	else if (c == 's')
+		return (ft_putall(0, va_arg(a, char *), 3, 0));
+	else if (c == 'p')
+		return (ft_putall(va_arg(a, unsigned long), "0123456789abcdef", 1, 16));
 	else if (c == 'x')
 		return (ft_putall(va_arg(a, unsigned), "0123456789abcdef", 0, 16));
 	else if (c == 'X')

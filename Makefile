@@ -6,13 +6,13 @@
 #    By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/25 04:21:32 by mkarakul          #+#    #+#              #
-#    Updated: 2022/12/25 04:22:02 by mkarakul         ###   ########.fr        #
+#    Updated: 2022/12/27 14:53:47 by mkarakul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		= libftprintf.a
 
-SRCS	 	=	ft_printf.c 
+SRCS	 	=	ft_printf.c ft_putall.c
 
 OBJS 		= $(SRCS:.c=.o)
 
