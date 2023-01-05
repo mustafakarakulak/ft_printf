@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 03:38:33 by mkarakul          #+#    #+#             */
-/*   Updated: 2022/12/27 14:59:49 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/01/05 18:41:39 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,11 @@ int	ft_printf(const char *str, ...)
 	while (str[i])
 	{
 		if (str[i] == '%')
+		{
+			while (str[i++] == ' ')
+				return (0);
 			len += ft_control(str[i], a);
+		}
 		else
 			len += write(1, &str[i], 1);
 		i++;
