@@ -52,11 +52,7 @@ int	ft_printf(const char *str, ...)
 	while (str[i])
 	{
 		if (str[i] == '%')
-		{
-			while (str[i++] == ' ')
-				return (0);
 			len += ft_control(str[i], a);
-		}
 		else
 			len += write(1, &str[i], 1);
 		i++;
